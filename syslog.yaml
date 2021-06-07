@@ -1,5 +1,5 @@
 ---
-- name: Ensure syslog servers are configured
+- name: Ensure syslog servers are configured with syslog server entries
   hosts: routers
   gather_facts: false
   connection: network_cli
