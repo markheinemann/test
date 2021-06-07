@@ -1,0 +1,17 @@
+---
+- name: Ensure syslog servers are configured
+  hosts: routers
+  gather_facts: false
+  connection: network_cli
+  vars_files:
+    - group_vars.yaml
+ 
+  tasks:
+ 
+  - name: CONFIGURE IOS SYSLOG SERVER
+    ios_config:
+      lines:
+        - logging host {{ item }}
+      save_when: changed
+    loop: "{{ syslog_server }}"
+    when: ansible_network_os == 'ios'
